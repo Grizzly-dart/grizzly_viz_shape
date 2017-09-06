@@ -24,12 +24,16 @@ typedef CurveCreator = Curve Function(PathContext ctx);
 abstract class Curve {
   PathContext get context;
 
+  /// Starts a new area. Each area consists of two lines.
   void areaStart();
 
+  /// Ends current area
   void areaEnd();
 
+  /// Starts a new line
   void lineStart();
 
+  /// Ends a line
   void lineEnd();
 
   void point(num x, num y);

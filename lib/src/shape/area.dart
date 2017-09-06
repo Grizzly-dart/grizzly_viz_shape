@@ -30,6 +30,8 @@ class Area<VT> {
     if (data.length >= 1) {
       final Curve c = curve(ctx);
       c.areaStart();
+
+      // Top line segment for the area
       c.lineStart();
       for (int i = 0; i < data.length; i++) {
         x0s[i] = x0(data[i], i);
@@ -39,6 +41,15 @@ class Area<VT> {
         c.point(pX, pY);
       }
       c.lineEnd();
+
+      // Base line segment for the area
+      c.lineStart();
+      for(int i = 0; i < data.length; i++) {
+        final int idx = data.length - i - 1;
+        c.point(x0s[idx], y0s[idx]);
+      }
+      c.lineEnd();
+
       c.areaEnd();
     }
     return ctx;
